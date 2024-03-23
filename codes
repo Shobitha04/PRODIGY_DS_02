@@ -1,0 +1,58 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df=pd.read_csv("C:/Users/HP/Downloads/gender_submission.csv")
+df //prints the datasets provided
+
+df.info 
+//provides summary of the dataframe
+
+df.head()
+//gives information of the first 5 datasets(0 - 4)
+
+df.describe()
+// gives count mean, min, max of dataframe given
+
+df.shape
+//gives count of total no. of rows and columns
+
+print(df.isnull().sum())
+//checking for any null values in the dataset
+
+survived_mean = df['Survived'].mean()
+print("Mean of 'Survived' column:", survived_mean)
+// Calculate the mean of the 'Survived' column
+
+print(df.dtypes)
+//gives the datatype of the columns
+
+survived_median = df['Survived'].median()
+print("Median of 'Survived' column:", survived_median)
+//Calculate the median of the 'Survived' column
+
+sns.countplot(x='Survived', data=df)
+plt.title('Distribution of Survived')
+plt.show()
+//Visualize the distribution of the 'Survived' column
+
+survival_rate = df['Survived'].mean() * 100
+print("Survival Rate: {:.2f}%".format(survival_rate))
+//Calculate the survival rate
+
+
+//Calculate survival rate
+survival_counts = df['Survived'].value_counts()
+survival_rate = survival_counts / len(df) * 100
+
+//Plot the survival rate
+sns.barplot(x=survival_rate.index, y=survival_rate.values)
+plt.title('Survival Rate')
+plt.xlabel('Survived')
+plt.ylabel('Percentage')
+plt.xticks(ticks=[0, 1], labels=['Not Survived', 'Survived'])
+plt.show()
+
+
+
